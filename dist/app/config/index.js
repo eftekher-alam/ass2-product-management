@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
 dotenv_1.default.config({
-    path: path_1.default.join(process.cwd(), ".env")
+    path: path_1.default.join(process.cwd(), ".env"),
 });
 exports.default = {
     PORT: process.env.PORT,
-    DB_CONNECTION: process.env.DB_CONNECTION
+    DB_CONNECTION: process.env.DB_CONNECTION,
 };
