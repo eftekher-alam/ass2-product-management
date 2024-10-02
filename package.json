@@ -1,0 +1,36 @@
+{
+    "name": "2-ass-product-management",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "lint": "eslint",
+        "lint:fix": "eslint --fix",
+        "start": "node ./dist/server.js",
+        "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "@types/cors": "^2.8.17",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.21.0",
+        "mongoose": "^8.7.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.11.1",
+        "@types/eslint__js": "^8.42.3",
+        "@types/express": "^5.0.0",
+        "eslint": "^9.11.1",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "globals": "^15.9.0",
+        "prettier": "3.3.3",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^5.6.2",
+        "typescript-eslint": "^8.8.0"
+    }
+}
