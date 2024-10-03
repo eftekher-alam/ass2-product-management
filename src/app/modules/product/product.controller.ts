@@ -45,6 +45,33 @@ const readProductsController = async (req: Request, res: Response) => {
     }
 };
 
+const updateProductController = async (req: Request, res: Response) => {
+    try {
+        const productId = req.params.productId;
+        const productData = req.body.product;
+        const validProduct = ProductValidators.zodProduct.parse(productData);
+        const result = await ProductServices.updateProductService(
+            productId,
+            validProduct,
+        );
+
+        const response: IResponse = {
+            success: true,
+            message: "Updated product successfully",
+            data: result,
+        };
+        res.status(200).json(response);
+    } catch (error) {
+        const response: IResponse = {
+            success: false,
+            message: "Someting is wrong",
+            data: error instanceof Error ? error.message : error,
+        };
+
+        res.status(500).json(response);
+    }
+};
+
 const readProductByIdController = async (req: Request, res: Response) => {
     const productId = req.params.productId;
     try {
@@ -70,4 +97,5 @@ export const ProductControllers = {
     createProductController,
     readProductsController,
     readProductByIdController,
+    updateProductController,
 };
