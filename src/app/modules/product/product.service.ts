@@ -7,6 +7,12 @@ const createProduct = async (productData: IProduct) => {
     return result;
 };
 
+const readProducts = async () => {
+    const result = Product.find();
+    return result;
+};
+
 export const ProductServices = {
     createProduct,
+    readProducts,
 };

@@ -11,7 +11,27 @@ const createProductController = async (req: Request, res: Response) => {
 
         const response: IResponse = {
             success: true,
-            message: "Student created successfully",
+            message: "Product created successfully",
+            data: result,
+        };
+        res.status(200).json(response);
+    } catch (error) {
+        const response: IResponse = {
+            success: false,
+            message: "Someting is wrong",
+            data: error instanceof Error ? error.message : error,
+        };
+        res.status(500).json(response);
+    }
+};
+
+const readProductsController = async (req: Request, res: Response) => {
+    try {
+        const result = await ProductServices.readProducts();
+
+        const response: IResponse = {
+            success: true,
+            message: "Products found successfully",
             data: result,
         };
         res.status(200).json(response);
@@ -27,4 +47,5 @@ const createProductController = async (req: Request, res: Response) => {
 
 export const ProductControllers = {
     createProductController,
+    readProductsController,
 };
