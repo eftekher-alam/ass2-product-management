@@ -11,6 +11,14 @@ const readProductsService = async () => {
     const result = Product.find();
     return result;
 };
+const searchProductService = async (searchTerm: string) => {
+    console.log("Executing search function.");
+
+    const result = Product.find({
+        name: { $regex: searchTerm, $options: "i" },
+    });
+    return result;
+};
 
 const readProductByIdService = async (productId: string) => {
     const result = Product.findById(productId);
@@ -27,4 +35,5 @@ export const ProductServices = {
     readProductsService,
     readProductByIdService,
     updateProductService,
+    searchProductService,
 };

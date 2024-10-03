@@ -27,7 +27,15 @@ const createProductController = async (req: Request, res: Response) => {
 
 const readProductsController = async (req: Request, res: Response) => {
     try {
-        const result = await ProductServices.readProductsService();
+        let result: unknown;
+        const searchTerm: unknown = req.query.searchTerm;
+        if (searchTerm) {
+            result = await ProductServices.searchProductService(
+                searchTerm as string,
+            );
+        } else {
+            result = await ProductServices.readProductsService();
+        }
 
         const response: IResponse = {
             success: true,
@@ -93,9 +101,31 @@ const readProductByIdController = async (req: Request, res: Response) => {
     }
 };
 
+const searchProductController = async (req: Request, res: Response) => {
+    const productId = req.params.productId;
+    try {
+        const result = await ProductServices.readProductByIdService(productId);
+
+        const response: IResponse = {
+            success: true,
+            message: "Product found successfully",
+            data: result,
+        };
+        res.status(200).json(response);
+    } catch (error) {
+        const response: IResponse = {
+            success: false,
+            message: "Someting is wrong",
+            data: error instanceof Error ? error.message : error,
+        };
+        res.status(500).json(response);
+    }
+};
+
 export const ProductControllers = {
     createProductController,
     readProductsController,
     readProductByIdController,
     updateProductController,
+    searchProductController,
 };
