@@ -7,7 +7,7 @@ const createProductController = async (req: Request, res: Response) => {
     try {
         const product = req.body;
         const validProduct = ProductValidators.zodProduct.parse(product);
-        const result = await ProductServices.createProduct(validProduct);
+        const result = await ProductServices.createProductService(validProduct);
 
         const response: IResponse = {
             success: true,
@@ -27,7 +27,7 @@ const createProductController = async (req: Request, res: Response) => {
 
 const readProductsController = async (req: Request, res: Response) => {
     try {
-        const result = await ProductServices.readProducts();
+        const result = await ProductServices.readProductsService();
 
         const response: IResponse = {
             success: true,
@@ -45,7 +45,29 @@ const readProductsController = async (req: Request, res: Response) => {
     }
 };
 
+const readProductByIdController = async (req: Request, res: Response) => {
+    const productId = req.params.productId;
+    try {
+        const result = await ProductServices.readProductByIdService(productId);
+
+        const response: IResponse = {
+            success: true,
+            message: "Product found successfully",
+            data: result,
+        };
+        res.status(200).json(response);
+    } catch (error) {
+        const response: IResponse = {
+            success: false,
+            message: "Someting is wrong",
+            data: error instanceof Error ? error.message : error,
+        };
+        res.status(500).json(response);
+    }
+};
+
 export const ProductControllers = {
     createProductController,
     readProductsController,
+    readProductByIdController,
 };

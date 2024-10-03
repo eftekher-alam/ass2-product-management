@@ -1,18 +1,24 @@
 import { IProduct } from "./product.interface";
 import { Product } from "./product.model";
 
-const createProduct = async (productData: IProduct) => {
+const createProductService = async (productData: IProduct) => {
     const result = Product.create(productData);
 
     return result;
 };
 
-const readProducts = async () => {
+const readProductsService = async () => {
     const result = Product.find();
     return result;
 };
 
+const readProductByIdService = async (productId: string) => {
+    const result = Product.findById(productId);
+    return result;
+};
+
 export const ProductServices = {
-    createProduct,
-    readProducts,
+    createProductService,
+    readProductsService,
+    readProductByIdService,
 };
