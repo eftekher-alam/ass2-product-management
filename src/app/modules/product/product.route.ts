@@ -10,5 +10,9 @@ router.get(
     ProductControllers.readProductByIdController,
 );
 router.put("/products/:productId", ProductControllers.updateProductController);
+router.delete(
+    "/products/:productId",
+    ProductControllers.deleteProductByIdController,
+);
 
 export const ProductRoutes = router;

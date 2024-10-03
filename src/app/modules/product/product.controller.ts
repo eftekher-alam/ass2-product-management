@@ -85,6 +85,8 @@ const readProductByIdController = async (req: Request, res: Response) => {
     try {
         const result = await ProductServices.readProductByIdService(productId);
 
+        // if (!result) throw new Error("No Product found.");
+
         const response: IResponse = {
             success: true,
             message: "Product found successfully",
@@ -101,14 +103,15 @@ const readProductByIdController = async (req: Request, res: Response) => {
     }
 };
 
-const searchProductController = async (req: Request, res: Response) => {
+const deleteProductByIdController = async (req: Request, res: Response) => {
     const productId = req.params.productId;
     try {
-        const result = await ProductServices.readProductByIdService(productId);
+        const result =
+            await ProductServices.deleteProductByIdService(productId);
 
         const response: IResponse = {
             success: true,
-            message: "Product found successfully",
+            message: "Product deleted successfully",
             data: result,
         };
         res.status(200).json(response);
@@ -127,5 +130,5 @@ export const ProductControllers = {
     readProductsController,
     readProductByIdController,
     updateProductController,
-    searchProductController,
+    deleteProductByIdController,
 };
