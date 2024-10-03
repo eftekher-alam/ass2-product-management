@@ -13,7 +13,7 @@ export interface IProduct {
     description: string;
     price: number;
     category: string;
-    tages: string[];
+    tags: string[];
     variants: IVariant[];
     inventory: IInventory;
 }

@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
 import { ProductServices } from "./product.service";
 import { IResponse } from "./../../utlities/interfaces/IResponse";
+import { ProductValidators } from "./student.validation";
 
 const createProductController = async (req: Request, res: Response) => {
     try {
         const product = req.body;
-        // console.log("Product data", product);
-        const result = await ProductServices.createProduct(product);
+        const validProduct = ProductValidators.zodProduct.parse(product);
+        const result = await ProductServices.createProduct(validProduct);
 
         const response: IResponse = {
             success: true,
