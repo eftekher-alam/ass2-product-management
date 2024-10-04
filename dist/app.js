@@ -13,6 +13,9 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use("/api", product_route_1.ProductRoutes);
 app.use("/api", order_route_1.OrderRouters);
+app.use("/", (req, res) => {
+    res.json({ message: "Server is runing, don't forget to build locally." });
+});
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((req, res, next) => {
     res.status(404).json({ message: "Route not found" });
